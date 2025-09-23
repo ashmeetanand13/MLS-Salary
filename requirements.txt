@@ -1,0 +1,18 @@
+# Core dependencies
+streamlit
+pandas
+numpy
+
+# Visualization
+plotly
+
+# Data fetching
+requests
+
+# Machine learning for similarity analysis
+scikit-learn
+scipy
+
+# Optional but recommended for better performance
+openpyxl==3.1.2  # For Excel file support if needed
+python-dateutil==2.8.2  # Better date handling
