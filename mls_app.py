@@ -840,5 +840,5 @@ else:
 
 # Footer
 st.markdown("---")
-st.markdown("**MLS Salary vs Performance Analysis** | Data: 2023-2025 | (I have not used in-depth stats ot every position, \
-So, some players will not add up to the standards - I would love to learn that, if anyone would like to use this for their team.**")
+st.markdown("**MLS Salary vs Performance Analysis** | Data: 2023-2025 | (I have not used in-depth stats at every position. \
+So, some players for a specific position will not add up to the standards - I would love to learn that, if anyone would like to use this for their team.")
