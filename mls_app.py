@@ -19,10 +19,23 @@ st.set_page_config(
 st.title("⚽ MLS Salary vs Performance Analysis")
 st.markdown("Analyze how MLS player performance in one season affects their salary in the next season")
 
-# Sidebar for file uploads
-st.sidebar.header("📁 Upload Data Files")
-salary_file = st.sidebar.file_uploader("Upload Salary Data (CSV)", type=['csv'], key="salary")
-performance_file = st.sidebar.file_uploader("Upload Performance Data (CSV)", type=['csv'], key="performance")
+# Function to load data from GitHub
+@st.cache_data
+def load_data_from_github():
+    """Load CSV files directly from GitHub"""
+    try:
+        # GitHub raw URLs for the CSV files
+        performance_url = "https://raw.githubusercontent.com/ashmeetanand13/MLS-Salary/main/mls_23_24.csv"
+        salary_url = "https://raw.githubusercontent.com/ashmeetanand13/MLS-Salary/main/mlspa_salary.csv"
+        
+        # Load the data
+        performance_df = pd.read_csv(performance_url)
+        salary_df = pd.read_csv(salary_url)
+        
+        return salary_df, performance_df, True
+    except Exception as e:
+        st.error(f"Error loading data from GitHub: {str(e)}")
+        return None, None, False
 
 def normalize_name(name):
     """Normalize player names for matching"""
