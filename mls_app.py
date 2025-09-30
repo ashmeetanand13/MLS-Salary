@@ -29,8 +29,8 @@ def load_data_from_github():
         salary_url = "https://raw.githubusercontent.com/ashmeetanand13/MLS-Salary/main/mlspa_salary.csv"
         
         # Load the data
-        performance_file = pd.read_csv(performance_url)
-        salary_file = pd.read_csv(salary_url)
+        performance_df = pd.read_csv(performance_url)
+        salary_df = pd.read_csv(salary_url)
         
         return salary_df, performance_df, True
     except Exception as e:
@@ -230,8 +230,8 @@ def process_data(salary_df, performance_df):
 if salary_df and performance_df:
     try:
         # Load data
-        salary_df = pd.read_csv(salary_file)
-        performance_df = pd.read_csv(performance_file)
+        salary_df = pd.read_csv(salary_df)
+        performance_df = pd.read_csv(performance_df)
         
         # Display initial data info
         col1, col2 = st.columns(2)
