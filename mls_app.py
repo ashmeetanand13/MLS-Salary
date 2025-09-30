@@ -226,21 +226,28 @@ def process_data(salary_df, performance_df):
     else:
         return pd.DataFrame()
 
-# Main app logic
-if salary_df and performance_df:
+# Main app logic - Load data from GitHub
+with st.spinner("Loading data from GitHub..."):
+    salary_df, performance_df, data_loaded = load_data_from_github()
+
+if data_loaded and salary_df is not None and performance_df is not None:
     try:
-        # Load data
-        salary_df = pd.read_csv(salary_df)
-        performance_df = pd.read_csv(performance_df)
-        
         # Display initial data info
         col1, col2 = st.columns(2)
         with col1:
-            st.info(f"📊 Loaded {len(salary_df)} salary records")
+            st.info(f"📊 Loaded {len(salary_df)} salary records from GitHub")
             st.caption(f"Years: {sorted(salary_df['salary_year'].unique())}")
         with col2:
-            st.info(f"⚽ Loaded {len(performance_df)} performance records")
+            st.info(f"⚽ Loaded {len(performance_df)} performance records from GitHub")
             st.caption(f"Seasons: {sorted(performance_df['Season'].unique())}")
+        
+        # Add data source information
+        with st.expander("📌 Data Sources"):
+            st.markdown("""
+            **Data loaded from GitHub:**
+            - [Performance Data (2023-2024)](https://github.com/ashmeetanand13/MLS-Salary/blob/main/mls_23_24.csv)
+            - [Salary Data](https://github.com/ashmeetanand13/MLS-Salary/blob/main/mlspa_salary.csv)
+            """)
         
         # Process data
         with st.spinner("Processing and matching player data..."):
@@ -303,7 +310,7 @@ if salary_df and performance_df:
             # Visualizations
             st.header("📈 Performance vs Salary Analysis")
             
-            # Create tabs for different visualizations
+            # Create tabs for different visualisations
             tab1, tab2, tab3, tab4 = st.tabs(["Scatter Plot", "Position Distribution", "Top Players", "Team Analysis"])
             
             with tab1:
