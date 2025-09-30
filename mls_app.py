@@ -842,4 +842,4 @@ else:
 st.markdown("---")
 st.markdown("**MLS Salary vs Performance Analysis** | Data: 2023-2025 | (I have not used in-depth stats ot every position, s
 o some players will not add up to the standards - 
-I would love to learn that, if anyone would like to use this for their team.")
+I would love to learn that, if anyone would like to use this for their team.**")
