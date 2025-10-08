@@ -29,6 +29,50 @@ if 'performance_df' not in st.session_state:
 if 'processed_data' not in st.session_state:
     st.session_state.processed_data = None
 
+
+# Initialize session state
+if 'salary_df' not in st.session_state:
+    st.session_state.salary_df = None
+if 'performance_df' not in st.session_state:
+    st.session_state.performance_df = None
+if 'processed_data' not in st.session_state:
+    st.session_state.processed_data = None
+
+# Sidebar controls
+st.sidebar.header("⚙️ Settings")
+
+# Add refresh button
+if st.sidebar.button("🔄 Refresh Data from GitHub"):
+    st.session_state.salary_df = None
+    st.session_state.performance_df = None
+    st.session_state.processed_data = None
+    st.cache_data.clear()
+    st.rerun()
+
+fuzzy_threshold = st.sidebar.slider(
+    "Name Matching Threshold",
+    min_value=0.70,
+    max_value=1.0,
+    value=0.85,
+    step=0.05,
+    help="Higher values require more exact name matches"
+)
+
+min_minutes = st.sidebar.slider(
+    "Minimum Minutes Played",
+    min_value=0,
+    max_value=2000,
+    value=450,
+    step=50,
+    help="Filter out players with minimal playing time"
+)
+
+use_percentiles = st.sidebar.checkbox(
+    "Use Percentile-Based Scoring",
+    value=True,
+    help="Use percentile ranking for more normalized scores"
+)
+
 # Function to load data from GitHub
 @st.cache_data
 def load_data_from_github():
