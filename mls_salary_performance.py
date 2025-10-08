@@ -570,17 +570,15 @@ def show_scoring_methodology():
             """)
 
 # Main app logic
-if salary_df and performance_df:
+# Load data from GitHub
+with st.spinner("Loading data from GitHub..."):
+    salary_df, performance_df, success = load_data_from_github()
+
+if success and salary_df is not None and performance_df is not None:
     try:
-        # Load data with caching
-        with st.spinner("Loading data files..."):
-            if st.session_state.salary_df is None or st.session_state.performance_df is None:
-                salary_df, performance_df = load_data_from_github(salary_file, performance_file)
-                st.session_state.salary_df = salary_df
-                st.session_state.performance_df = performance_df
-            else:
-                salary_df = st.session_state.salary_df
-                performance_df = st.session_state.performance_df
+        # Store in session state
+        st.session_state.salary_df = salary_df
+        st.session_state.performance_df = performance_df
         
         # Display initial data info
         col1, col2, col3 = st.columns(3)
