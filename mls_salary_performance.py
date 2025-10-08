@@ -575,7 +575,7 @@ if salary_df and performance_df:
         # Load data with caching
         with st.spinner("Loading data files..."):
             if st.session_state.salary_df is None or st.session_state.performance_df is None:
-                salary_df, performance_df = load_data(salary_file, performance_file)
+                salary_df, performance_df = load_data_from_github(salary_file, performance_file)
                 st.session_state.salary_df = salary_df
                 st.session_state.performance_df = performance_df
             else:
