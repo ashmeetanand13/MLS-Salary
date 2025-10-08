@@ -21,6 +21,14 @@ st.set_page_config(
 st.title("⚽ MLS Salary vs Performance Analysis")
 st.markdown("Analyze how MLS player performance in one season affects their salary in the next season")
 
+# Initialize session state
+if 'salary_df' not in st.session_state:
+    st.session_state.salary_df = None
+if 'performance_df' not in st.session_state:
+    st.session_state.performance_df = None
+if 'processed_data' not in st.session_state:
+    st.session_state.processed_data = None
+
 # Function to load data from GitHub
 @st.cache_data
 def load_data_from_github():
