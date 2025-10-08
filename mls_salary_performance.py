@@ -562,7 +562,7 @@ def show_scoring_methodology():
             """)
 
 # Main app logic
-if salary_file and performance_file:
+if salary_df and performance_df:
     try:
         # Load data with caching
         with st.spinner("Loading data files..."):
